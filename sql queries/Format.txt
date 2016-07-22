@@ -1,0 +1,20 @@
+INSERT INTO Department ([Department ID], [Deparment Name], [Department Phone Number])
+Values (1, 'Computer Science', 1112223333);
+
+INSERT INTO Employee ([ID], [Last Name], [First Name],[Phone Number],[Email],[Pay Rate],
+ [username],[password],[Security Level],[Notes],[Department_ID])
+Values (100,'Coco','Cola',9998887777,'cococola@coke.coke',12.22,
+'cococola','ohmy',1,'Good',1);
+
+INSERT INTO [Time]
+VALUES('7/21/2016 12:20:00 PM','7/21/2016 1:45:00 PM',0,100,2.33,100);
+
+
+select count(*)
+from [Time]
+where [Time out] is null and EmployeeIdFK = 100;
+
+/*
+This is the format to insert into. Just copy paste it and then just change the 
+required information.
+*/
