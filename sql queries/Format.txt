@@ -14,6 +14,16 @@ select count(*)
 from [Time]
 where [Time out] is null and EmployeeIdFK = 100;
 
+
+select [Time in]
+from [Time]
+where [EmployeeIdFK] = 100 and [Time out] is null;
+
+update [Time]
+set [Total Hours] = .77, [Time out] = '1:44 AM'
+where [EmployeeIdFK] = 100 and [Time out] is null;
+
+
 /*
 This is the format to insert into. Just copy paste it and then just change the 
 required information.

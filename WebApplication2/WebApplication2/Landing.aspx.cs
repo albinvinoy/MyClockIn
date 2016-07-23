@@ -1,4 +1,12 @@
-﻿using System;
+﻿// THIS PAGE IS ALMOST COMPLETE, DO NOT CHANGE ANYTHING! -albin
+/*
+ * We need just need to add notes to the database during each of the time out
+ * 
+ * Patrick and Tyler -> ***Make a Submit button*** and thats all for this page. 
+ *  
+ * */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,60 +20,64 @@ namespace WebApplication2
 {
     public partial class Landing : System.Web.UI.Page
     {
+        DateTime TimeStart = new DateTime();
+        DateTime end = new DateTime();
+
         string my_notes;
         private int smartCount = 0;
-        //   private string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;";
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
         int EmployeeId = 100;
 
         public void Page_Load(object sender, EventArgs e)
         {
-
-
             buttonupdate();
-
-            
-
-            
         }
 
         protected void In_Click(object sender, EventArgs e)
         {
-                DateTime start = new DateTime();
-                start = DateTime.Now;
+            DateTime start = new DateTime();
+            start = DateTime.Now;
 
-                string format = start.ToShortTimeString();
-                Label1.Text = "Clock In Time" + format;
-                smartCount++;
+            string format = start.ToShortTimeString();
+            Label1.Text = "Clock In Time" + format;
+            smartCount++;
 
-                string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
+            string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
 VALUES('" + start + "',1,'" + EmployeeId + "');";
 
-                addTime(sqlin);
-                buttonupdate();
-            }
+            addTime(sqlin);
+            buttonupdate();
+        }
 
         protected void Out_Click(object sender, EventArgs e)
         {
+            //DateTime total = new DateTime();
+            //DateTime end = new DateTime();
             
-                DateTime end = new DateTime();
-                end = DateTime.Now;
+            end = DateTime.Now;
+            
+            string format = end.ToShortTimeString();
+            Label2.Text = "Clock Out Time: " + format;
+            smartCount++;
 
-                string format = end.ToShortTimeString();
-                Label2.Text = "Clock Out Time: " + format;
-                smartCount++;
-                string sqlin = @"update [Time]
-            set [Time out] = '" + end + "' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
+            // get the start time of the work period
+            TimeStart = getStartTime();
 
+            //calculate the total time
+             var TotalWorkTime = (end - TimeStart).TotalHours;
 
-                addTime(sqlin);
-                buttonupdate();
+            TextBox1.Text = TimeStart.ToString() + " " + end.ToString() + " " + TotalWorkTime.ToString();
+            // query to update time out and total time
+            string sqlin = @"update [Time]
+            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
 
+            addTime(sqlin);
+            buttonupdate();
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            TextBox1.Text = smartCount.ToString();
+            
         }
 
         private void displayTime()
@@ -83,7 +95,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             }
             catch (SqlException ex)
             {
-                
+
             }
             finally
             {
@@ -97,12 +109,12 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             try
             {
                 con.Open();
-               smartCount = (Int32) command.ExecuteScalar();
-                
+                smartCount = (Int32)command.ExecuteScalar();
+
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
-                
+
             }
             finally
             {
@@ -131,8 +143,32 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
                 Out.Enabled = true;
                 In.Enabled = false;
             }
-            TextBox1.Text = smartCount.ToString();
+           // TextBox1.Text = smartCount.ToString();
         }
 
+        private DateTime getStartTime()
+        {
+            DateTime startm = new DateTime();
+            string getstarttime = @"
+select [Time in]
+from [Time]
+where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
+            SqlCommand command = new SqlCommand(getstarttime, con);
+
+            try
+            {
+                con.Open();
+                startm = (DateTime)command.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return startm;
+        }
     }
 }
