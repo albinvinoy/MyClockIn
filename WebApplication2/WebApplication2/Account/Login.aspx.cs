@@ -27,9 +27,9 @@ namespace WebApplication2.Account
                 var usename = Email.Text;
                 var password = Password.Text;
                 string sqlstr = @"
-select count(*)
-from [Employee]
-where [username] = '" + usename + "' and  [password] = '" + password + "';";
+                select count(*)
+                from [Employee]
+                where [username] = '" + usename + "' and  [password] = '" + password + "';";
 
                 // code to redirect accodring to status 
                 int status = ConnectionControl(sqlstr);
