@@ -6,12 +6,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using WebApplication2.Models;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication2.Account
 {
     public partial class Login : Page
     {
-        SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security = True;");
+        static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        SqlConnection connection = new SqlConnection(con);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +23,7 @@ namespace WebApplication2.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
+            bool level = false;
 
             if (IsValid)
             {
@@ -32,10 +36,17 @@ namespace WebApplication2.Account
                 where [username] = '" + usename + "' and  [password] = '" + password + "';";
 
                 // code to redirect accodring to status 
+                //change
                 int status = ConnectionControl(sqlstr);
-                if (status == 1)
+                //insert sql qeury for secruity status
+                //and set level
+                if (status == 1 && level == false)
                 {
                     Server.Transfer("~/Landing.aspx");
+                }
+                else if(status ==1 && level == true)
+                {
+                    Server.Transfer("~/Manager.aspx");
                 }
                 else
                 {

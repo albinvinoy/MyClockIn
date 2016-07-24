@@ -51,6 +51,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
 
         protected void Out_Click(object sender, EventArgs e)
         {
+            double time = 0;
             //DateTime total = new DateTime();
             //DateTime end = new DateTime();
             
@@ -65,8 +66,9 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
 
             //calculate the total time
              var TotalWorkTime = (end - TimeStart).TotalHours;
+            TotalWorkTime = TotalWorkTime / 3060;
 
-            TextBox1.Text = TimeStart.ToString() + " " + end.ToString() + " " + TotalWorkTime.ToString();
+            Label4.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString(); 
             // query to update time out and total time
             string sqlin = @"update [Time]
             set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
@@ -82,7 +84,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
 
         private void displayTime()
         {
-            Label3.Text = "Cuurrent Time: " + DateTime.Now.ToShortTimeString();
+            Label3.Text = "Current Time: " + DateTime.Now.ToShortTimeString();
         }
 
         private void addTime(string cmd)
