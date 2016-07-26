@@ -22,13 +22,13 @@ namespace WebApplication2
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void ButtonClockIn_Click(object sender, EventArgs e)
         {
             DateTime start = new DateTime();
             start = DateTime.Now;
 
             string format = start.ToShortTimeString();
-            Label1.Text = "Clock In Time" + format;
+            LabelCurrentTime.Text = "Clock In Time" + format;
 
             string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
 VALUES('" + start + "',1,'" + EmployeeId + "');";
@@ -37,12 +37,12 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             buttonupdate2();
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void ButtonClockOut_Click(object sender, EventArgs e)
         {
             end = DateTime.Now;
 
             string format = end.ToShortTimeString();
-            Label2.Text = "Clock Out Time: " + format;
+            LabelClockIn.Text = "Clock Out Time: " + format;
 
             // get the start time of the work period
             TimeStart = getStartTime();
@@ -50,7 +50,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             //calculate the total time
             var TotalWorkTime = (end - TimeStart).TotalHours;
 
-            Label3.Text = TimeStart.ToString() + " " + end.ToString() + " " + TotalWorkTime.ToString();
+            LabelClockOut.Text = TimeStart.ToString() + " " + end.ToString() + " " + TotalWorkTime.ToString();
             // query to update time out and total time
             string sqlin = @"update [Time]
             set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime + "' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
@@ -87,14 +87,14 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             //if count = 0 disables clock out button
             if (btnctrl == 0)
             {
-                Button1.Enabled = false;
-                Button2.Enabled = true;
+                ButtonClockIn.Enabled = false;
+                ButtonClockOut.Enabled = true;
             }
             //else disable clock in
             else
             {
-                Button2.Enabled = true;
-                Button1.Enabled = false;
+                ButtonClockOut.Enabled = true;
+                ButtonClockIn.Enabled = false;
             }
             // TextBox1.Text = smartCount.ToString();
         }
@@ -155,19 +155,19 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
             //if count = 0 disables clock out button
             if (btnctrl == 0)
             {
-                Button2.Enabled = false;
-                Button1.Enabled = true;
+                ButtonClockOut.Enabled = false;
+                ButtonClockIn.Enabled = true;
             }
             //else disable clock in
             else
             {
-                Button2.Enabled = true;
-                Button1.Enabled = false;
+                ButtonClockOut.Enabled = true;
+                ButtonClockIn.Enabled = false;
             }
             // TextBox1.Text = smartCount.ToString();
         }
 
-        protected void Button3_Click(object sender, EventArgs e)
+        protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
         }

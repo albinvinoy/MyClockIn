@@ -860,6 +860,9 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+    top: -21px;
+    left: 0px;
+    height: 186px;
 }
 
 .col-xs-1,
@@ -4945,6 +4948,7 @@ a.list-group-item.active > .badge,
 
 .jumbotron p {
   line-height: 1.4;
+    width: 1099px;
 }
 
 .container .jumbotron {

@@ -13,49 +13,49 @@ namespace WebApplication2 {
     public partial class Manager {
         
         /// <summary>
-        /// Label1 control.
+        /// LabelCurrentTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LabelCurrentTime;
         
         /// <summary>
-        /// Button1 control.
+        /// ButtonClockIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button ButtonClockIn;
         
         /// <summary>
-        /// Button2 control.
+        /// ButtonClockOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button ButtonClockOut;
         
         /// <summary>
-        /// Label2 control.
+        /// LabelClockIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label LabelClockIn;
         
         /// <summary>
-        /// Label3 control.
+        /// LabelClockOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LabelClockOut;
         
         /// <summary>
         /// ListBox1 control.
@@ -67,12 +67,12 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.ListBox ListBox1;
         
         /// <summary>
-        /// Button3 control.
+        /// ButtonSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button ButtonSubmit;
     }
 }

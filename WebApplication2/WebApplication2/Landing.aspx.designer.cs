@@ -13,13 +13,13 @@ namespace WebApplication2 {
     public partial class Landing {
         
         /// <summary>
-        /// Label3 control.
+        /// LabelCurrentTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LabelCurrentTime;
         
         /// <summary>
         /// In control.
@@ -40,40 +40,40 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Button Out;
         
         /// <summary>
-        /// Label1 control.
+        /// LabelClockIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LabelClockIn;
         
         /// <summary>
-        /// Label2 control.
+        /// LabelClockOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label LabelClockOut;
         
         /// <summary>
-        /// Label4 control.
+        /// LabelTotalTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label LabelTotalTime;
         
         /// <summary>
-        /// TextBox1 control.
+        /// TextBoxNotes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNotes;
         
         /// <summary>
         /// Button2 control.

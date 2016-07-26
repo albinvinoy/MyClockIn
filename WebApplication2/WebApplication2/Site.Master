@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>- My ASP.NET Application</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -47,12 +47,15 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">WinClockIn</a>
+                    <asp:Label ID="EmpLoggedIn" runat="server" ForeColor="White" Text="Logged In As:    Mrs. Robinson" Width="250px"></asp:Label>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/Landing">Clock In/Out</a></li>
+                        <li><a runat="server" href="~/WorkHistory">Work History</a></li>
+                        <li><a runat="server" href="~/Manager">Management</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Work History</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -78,7 +81,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>- My ASP.NET Application</p>
             </footer>
         </div>
     </form>

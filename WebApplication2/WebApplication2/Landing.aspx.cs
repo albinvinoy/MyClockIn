@@ -39,7 +39,7 @@ namespace WebApplication2
             start = DateTime.Now;
 
             string format = start.ToShortTimeString();
-            Label1.Text = "Clock In Time" + format;
+            LabelClockIn.Text = "Clock In Time" + format;
             smartCount++;
 
             string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
@@ -58,7 +58,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             end = DateTime.Now;
             
             string format = end.ToShortTimeString();
-            Label2.Text = "Clock Out Time: " + format;
+            LabelClockOut.Text = "Clock Out Time: " + format;
             smartCount++;
 
             // get the start time of the work period
@@ -68,7 +68,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
              var TotalWorkTime = (end - TimeStart).TotalHours;
             TotalWorkTime = TotalWorkTime / 3060;
 
-            Label4.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString(); 
+            LabelTotalTime.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString(); 
             // query to update time out and total time
             string sqlin = @"update [Time]
             set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
@@ -77,14 +77,14 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             buttonupdate();
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        protected void TextBoxNotes_TextChanged(object sender, EventArgs e)
         {
             
         }
 
         private void displayTime()
         {
-            Label3.Text = "Current Time: " + DateTime.Now.ToShortTimeString();
+            LabelCurrentTime.Text = "Current Time: " + DateTime.Now.ToShortTimeString();
         }
 
         private void addTime(string cmd)
@@ -171,6 +171,18 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
                 con.Close();
             }
             return startm;
+        }
+
+        // Back Button Fix (Attempt only, not currently working)
+        protected override void OnPreInit(EventArgs e)
+        {
+            base.OnPreInit(e);
+
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = DateTime.Now.AddDays(-1d);
+            Response.Expires = -1500;
+            Response.CacheControl = "no-cache";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
         }
     }
 }
