@@ -15,7 +15,6 @@ using System.Web.UI.WebControls;
 using System.Timers;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace WebApplication2
 {
@@ -26,31 +25,14 @@ namespace WebApplication2
 
         string my_notes;
         private int smartCount = 0;
-<<<<<<< HEAD
-        // SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
-        SqlConnection con = new SqlConnection(@"Data Source=brandonknapp.net;" + "initial catalog = application" + "Integrated Security=True;");
-
-=======
-        /*
-        static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-        SqlConnection connection = new SqlConnection(con);
-        */
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
->>>>>>> 330d72ca33ffa0fd976c8643206035b01d5d79a6
         int EmployeeId = 100;
 
-        //update which buttons are grayed out upon loading
         public void Page_Load(object sender, EventArgs e)
         {
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //Response.Cache.SetExpires(Now.AddSeconds(-1));
-            //Response.Cache.SetNoStore();
-
             buttonupdate();
         }
 
-        //Employee clocks in. Add a new value into the time table and update buttons so time in is grayed out
         protected void In_Click(object sender, EventArgs e)
         {
             DateTime start = new DateTime();
@@ -67,15 +49,14 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             buttonupdate();
         }
 
-        //Employee clicks clock out. Update Null time out time values linked to employee and update button so that time out is grayed out
         protected void Out_Click(object sender, EventArgs e)
         {
             double time = 0;
             //DateTime total = new DateTime();
             //DateTime end = new DateTime();
-
+            
             end = DateTime.Now;
-
+            
             string format = end.ToShortTimeString();
             LabelClockOut.Text = "Clock Out Time: " + format;
             smartCount++;
@@ -84,13 +65,13 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             TimeStart = getStartTime();
 
             //calculate the total time
-            var TotalWorkTime = (end - TimeStart).TotalHours;
+             var TotalWorkTime = (end - TimeStart).TotalHours;
             TotalWorkTime = TotalWorkTime / 3060;
 
-            LabelTotalTime.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString();
+            LabelTotalTime.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString(); 
             // query to update time out and total time
             string sqlin = @"update [Time]
-            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime + "' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
+            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
 
             addTime(sqlin);
             buttonupdate();
@@ -98,16 +79,14 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
 
         protected void TextBoxNotes_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
-        //sets Label to Display current time
         private void displayTime()
         {
             LabelCurrentTime.Text = "Current Time: " + DateTime.Now.ToShortTimeString();
         }
 
-        //attempts to opens connection to database, executes command and closes connection
         private void addTime(string cmd)
         {
             SqlCommand command = new SqlCommand(cmd, con);
@@ -118,7 +97,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             }
             catch (SqlException ex)
             {
-                LabelCurrentTime.Text = "Unable to connect to database";
+
             }
             finally
             {
@@ -126,7 +105,6 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             }
         }
 
-        //attempts to opens connection to database, executes command and closes connection
         private int TestButtonIn(string cmd)
         {
             SqlCommand command = new SqlCommand(cmd, con);
@@ -138,7 +116,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             }
             catch (SqlException ex)
             {
-                LabelCurrentTime.Text = "Unable to connect to database";
+
             }
             finally
             {
@@ -147,7 +125,6 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             return smartCount;
         }
 
-        //checks database to find if there current employee has has a NULL time out and grays out clock in or clock out buttons
         private void buttonupdate()
         {
             string buttonsql =
@@ -168,7 +145,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
                 Out.Enabled = true;
                 In.Enabled = false;
             }
-            // TextBox1.Text = smartCount.ToString();
+           // TextBox1.Text = smartCount.ToString();
         }
 
         private DateTime getStartTime()
@@ -196,11 +173,6 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
             return startm;
         }
 
-<<<<<<< HEAD
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Contact.aspx");
-=======
         // Back Button Fix (Attempt only, not currently working)
         protected override void OnPreInit(EventArgs e)
         {
@@ -211,7 +183,6 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
             Response.Expires = -1500;
             Response.CacheControl = "no-cache";
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
->>>>>>> 330d72ca33ffa0fd976c8643206035b01d5d79a6
         }
     }
 }

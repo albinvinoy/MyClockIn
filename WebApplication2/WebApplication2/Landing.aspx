@@ -29,7 +29,7 @@
     <p>
         &nbsp;</p>
     <p>
-        <asp:Button ID="Button3" runat="server" Text="Work History" OnClick="Button3_Click" />
+        <asp:Button ID="Button3" runat="server" Text="Work History" />
         <br />
     </p>
 </asp:Content>
