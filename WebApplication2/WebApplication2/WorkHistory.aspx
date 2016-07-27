@@ -51,7 +51,11 @@
                         </div>
                     </div>
                     <div style="height: 306px">
+<<<<<<< HEAD:WebApplication2/WebApplication2/Contact.aspx
+                        <asp:TextBox ID="TextBox3" runat="server" BackColor="Silver" ForeColor="Black" Height="394px" ReadOnly="True" Width="1329px" OnTextChanged="TextBox3_TextChanged" BorderColor="Gray" Font-Size="X-Small" Wrap="true"></asp:TextBox>
+=======
                         <asp:TextBox ID="TextBoxLog" runat="server" BackColor="Silver" ForeColor="Black" Height="394px" ReadOnly="True" Width="668px" OnTextChanged="TextBoxLog_TextChanged" BorderColor="Gray" Font-Size="X-Small" Wrap="true"></asp:TextBox>
+>>>>>>> 330d72ca33ffa0fd976c8643206035b01d5d79a6:WebApplication2/WebApplication2/WorkHistory.aspx
                     </div>
                 </div>
 

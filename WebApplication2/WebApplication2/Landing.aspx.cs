@@ -26,17 +26,27 @@ namespace WebApplication2
 
         string my_notes;
         private int smartCount = 0;
+<<<<<<< HEAD
+        // SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
+        SqlConnection con = new SqlConnection(@"Data Source=brandonknapp.net;" + "initial catalog = application" + "Integrated Security=True;");
+
+=======
         /*
         static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
         SqlConnection connection = new SqlConnection(con);
         */
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
+>>>>>>> 330d72ca33ffa0fd976c8643206035b01d5d79a6
         int EmployeeId = 100;
 
         //update which buttons are grayed out upon loading
         public void Page_Load(object sender, EventArgs e)
         {
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Cache.SetExpires(Now.AddSeconds(-1));
+            //Response.Cache.SetNoStore();
+
             buttonupdate();
         }
 
@@ -186,6 +196,11 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
             return startm;
         }
 
+<<<<<<< HEAD
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Contact.aspx");
+=======
         // Back Button Fix (Attempt only, not currently working)
         protected override void OnPreInit(EventArgs e)
         {
@@ -196,6 +211,7 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
             Response.Expires = -1500;
             Response.CacheControl = "no-cache";
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
+>>>>>>> 330d72ca33ffa0fd976c8643206035b01d5d79a6
         }
     }
 }

@@ -10,11 +10,14 @@ using System.Configuration;
 
 namespace WebApplication2.Account
 {
+
     public partial class Login : Page
     {
-        static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        SqlConnection connection = new SqlConnection(con);
+        SqlConnection connection = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security = True;");
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
