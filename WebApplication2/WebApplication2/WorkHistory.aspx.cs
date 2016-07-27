@@ -32,6 +32,7 @@ namespace WebApplication2
  
         }
 
+
         protected void TextBoxStartDate_TextChanged(object sender, EventArgs e)
         {
             // Don't Remove
@@ -45,6 +46,12 @@ namespace WebApplication2
         protected void TextBoxLog_TextChanged(object sender, EventArgs e)
         {
             // Don't Remove
+        }
+
+        protected void ButtonReset_Click(object sender, EventArgs e)
+        {
+            TextBoxStartDate.Text = String.Empty;
+            TextBoxEndDate.Text = String.Empty;
         }
     }
 }

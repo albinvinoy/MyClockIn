@@ -18,6 +18,7 @@
                 </asp:Calendar>
                 <div>
                     <br />
+                    <asp:Button ID="ButtonReset" runat="server" Height="22px" OnClick="ButtonReset_Click" Text="Reset Calendar" Width="194px" />
                     <br />
                 </div>
             </td>
