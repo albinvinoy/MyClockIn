@@ -1,0 +1,21 @@
+https://msdn.microsoft.com/en-us/mt186501
+download(English (United States)) 
+installl it
+
+
+View -> Server Explorer
+
+Right Click on Data COnnection -> Add connection
+
+Microsoft SQL Server Database file
+Under Database file name -> either make a new one or file your file on the computer
+
+Double click on the "Data Connection" and that should show up a list of databases
+
+Double click on the correct database and it will show a list of folders
+
+Double click on the table and the list of all databses will be shown.
+
+Right the database you want and play with it. 
+
+ 

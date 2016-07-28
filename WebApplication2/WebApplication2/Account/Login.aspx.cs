@@ -12,39 +12,60 @@ namespace WebApplication2.Account
 {
     public partial class Login : Page
     {
-        static string con = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-        SqlConnection connection = new SqlConnection(con);
+        SqlConnection connection = new SqlConnection(GlobalInitialization.ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+            Response.AppendHeader("Pragma", "no-cache");
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            bool level = false;
+            byte level = byte.MaxValue;
 
             if (IsValid)
             {
-                
+
+                // Begin code to check for log in
                 var usename = Email.Text;
                 var password = Password.Text;
-                string sqlstr = @"
+                string sqllogin = @"
                 select count(*)
                 from [Employee]
                 where [username] = '" + usename + "' and  [password] = '" + password + "';";
 
-                // code to redirect accodring to status 
-                //change
-                int status = ConnectionControl(sqlstr);
-                //insert sql qeury for secruity status
-                //and set level
-                if (status == 1 && level == false)
+                GlobalInitialization.LoginStatus = ConnectionControl(sqllogin);
+                // End code to check for log in
+
+                if (GlobalInitialization.LoginStatus == 1)
+                {
+                    // Begin fetch user ID
+                    string sqlID = @"
+                select [ID]
+                from [Employee]
+                where [username] = '" + usename + "' and  [password] = '" + password + "';";
+
+                    GlobalInitialization.ID = ConnectionControl(sqlID);
+                    //End user ID
+
+                    // Begin fetch Security Level
+                    string sqlSecurityLevel = @"
+                select [Security Level]
+                from [Employee]
+                where [ID] = '" + GlobalInitialization.ID + "';";
+
+                    level = getSecurityLevel(sqlSecurityLevel);
+                    // End fetch Security Level
+                }
+                // Begin transfer to appropriate page
+                if (GlobalInitialization.LoginStatus == 1 && level == 1)
                 {
                     Server.Transfer("~/Landing.aspx");
                 }
-                else if(status ==1 && level == true)
+                else if (GlobalInitialization.LoginStatus == 1 && level == 2)
                 {
                     Server.Transfer("~/Manager.aspx");
                 }
@@ -53,7 +74,7 @@ namespace WebApplication2.Account
                     FailureText.Text = "Invalid login attempt";
                     ErrorMessage.Visible = true;
                 }
-                
+                // End transfer to appropriate page
             }
         }
 
@@ -76,6 +97,26 @@ namespace WebApplication2.Account
                 connection.Close();
             }
             return connected;
+        }
+
+        private byte getSecurityLevel(string cmd)
+        {
+             SqlCommand command = new SqlCommand(cmd, connection);
+         byte SeLvl = byte.MaxValue;
+            try
+            {
+                connection.Open();
+              SeLvl = (byte)command.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return SeLvl;
         }
     }
 }

@@ -382,6 +382,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="GlobalInitialization.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="WorkHistory.aspx.cs">
       <DependentUpon>WorkHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

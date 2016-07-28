@@ -1,12 +1,4 @@
-﻿// THIS PAGE IS ALMOST COMPLETE, DO NOT CHANGE ANYTHING! -albin
-/*
- * We need just need to add notes to the database during each of the time out
- * 
- * Patrick and Tyler -> ***Make a Submit button*** and thats all for this page. 
- *  
- * */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +22,10 @@ namespace WebApplication2
 
         public void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+           // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+            Response.AppendHeader("Pragma", "no-cache");
             buttonupdate();
         }
 
@@ -75,11 +71,13 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
 
             addTime(sqlin);
             buttonupdate();
+
+            
         }
 
         protected void TextBoxNotes_TextChanged(object sender, EventArgs e)
         {
-            
+            my_notes = TextBoxNotes.Text;
         }
 
         private void displayTime()

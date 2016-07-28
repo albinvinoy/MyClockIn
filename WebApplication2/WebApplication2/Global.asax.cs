@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
+
 namespace WebApplication2
 {
     public class Global : HttpApplication
@@ -16,6 +17,17 @@ namespace WebApplication2
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
+        //protected void Application_BeginRequest()
+        //{
+        //    ////NOTE: Stopping IE from being a caching whore
+        //    //HttpContext.Current.Response.Cache.SetAllowResponseInBrowserHistory(false);
+        //    //HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //    //HttpContext.Current.Response.Cache.SetNoStore();
+        //    //Response.Cache.SetExpires(DateTime.Now);
+        //    //Response.Cache.SetValidUntilExpires(true);
+
+        //}
     }
 }

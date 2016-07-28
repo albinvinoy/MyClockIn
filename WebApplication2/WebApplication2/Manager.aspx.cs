@@ -19,7 +19,10 @@ namespace WebApplication2
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+            Response.AppendHeader("Pragma", "no-cache");
         }
 
         protected void ButtonClockIn_Click(object sender, EventArgs e)
@@ -170,6 +173,11 @@ where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
         }
     }
 
