@@ -49,6 +49,15 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Calendar CalendarEndDate;
         
         /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        
+        /// <summary>
         /// ButtonSearch control.
         /// </summary>
         /// <remarks>
@@ -58,12 +67,21 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
-        /// TextBoxLog control.
+        /// EmpIDTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxLog;
+        protected global::System.Web.UI.WebControls.TextBox EmpIDTxt;
+        
+        /// <summary>
+        /// GVEmpHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVEmpHistory;
     }
 }

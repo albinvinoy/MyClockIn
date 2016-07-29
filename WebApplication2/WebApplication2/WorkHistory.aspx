@@ -39,6 +39,13 @@
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
                 <br />
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Eric\Documents\LocalDB.mdf;Integrated Security=True;Connect Timeout=30" OnSelecting="SqlDataSource1_Selecting" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours, [EmployeeIdFK] FROM [Time] WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK)) ORDER BY [Time in]">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="TextBoxStartDate" Name="Time_in" PropertyName="Text" Type="DateTime" />
+                        <asp:ControlParameter ControlID="TextBoxEndDate" Name="Time_out" PropertyName="Text" Type="DateTime" />
+                        <asp:ControlParameter ControlID="EmpIDTxt" Name="EmployeeIdFK" PropertyName="Text" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
                 <asp:Button ID="ButtonSearch" runat="server" Height="22px" Text="Search" Width="194px" OnClick="ButtonSearch_Click" />
             </td>
             <td style="height: 168px">
@@ -47,11 +54,19 @@
                     <div>
                         <div>
                             <br />
-                            Log History:
-                        </div>
+                            Employee ID: <asp:TextBox ID="EmpIDTxt" runat="server" ReadOnly="True" Width="33px"></asp:TextBox>
+                            <br />
+                            Log History:</div>
                     </div>
                     <div style="height: 306px">
-                        <asp:TextBox ID="TextBoxLog" runat="server" BackColor="Silver" ForeColor="Black" Height="394px" ReadOnly="True" Width="668px" OnTextChanged="TextBoxLog_TextChanged" BorderColor="Gray" Font-Size="X-Small" Wrap="true"></asp:TextBox>
+                        <asp:GridView ID="GVEmpHistory" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="89px" Width="542px">
+                            <Columns>
+                                <asp:BoundField DataField="Time_in" HeaderText="Time_in" SortExpression="Time_in" />
+                                <asp:BoundField DataField="Time_out" HeaderText="Time_out" SortExpression="Time_out" />
+                                <asp:BoundField DataField="Total_Hours" HeaderText="Total_Hours" SortExpression="Total_Hours" />
+                                <asp:BoundField DataField="EmployeeIdFK" HeaderText="EmployeeIdFK" SortExpression="EmployeeIdFK" />
+                            </Columns>
+                        </asp:GridView>
                     </div>
                 </div>
 

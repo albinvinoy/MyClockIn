@@ -705,6 +705,6 @@ D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\bin\Mi
 D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.Twitter.xml
 D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.OAuth.xml
+D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.csprojResolveAssemblyReference.cache
 D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.dll
 D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.pdb
-D:\School\ss16\362\Project\Beta\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.csprojResolveAssemblyReference.cache

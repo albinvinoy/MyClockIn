@@ -18,7 +18,7 @@ namespace WebApplication2
         string my_notes;
         private int smartCount = 0;
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
-        int EmployeeId = 100;
+      
 
         public void Page_Load(object sender, EventArgs e)
         {
@@ -39,7 +39,7 @@ namespace WebApplication2
             smartCount++;
 
             string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
-VALUES('" + start + "',1,'" + EmployeeId + "');";
+VALUES('" + start + "',1,'" + GlobalInitialization.ID + "');";
 
             addTime(sqlin);
             buttonupdate();
@@ -67,11 +67,10 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             LabelTotalTime.Text = TimeStart.ToShortTimeString() + " " + end.ToShortTimeString() + " " + " Hours worked" + TotalWorkTime.ToString(); 
             // query to update time out and total time
             string sqlin = @"update [Time]
-            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
+            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime +"' where [EmployeeIdFK] = '" + GlobalInitialization.ID + "'and [Time out] is null;";
 
             addTime(sqlin);
             buttonupdate();
-
             
         }
 
@@ -152,7 +151,7 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             string getstarttime = @"
 select [Time in]
 from [Time]
-where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
+where [EmployeeIdFK] = '" + GlobalInitialization.ID + "'and [Time out] is null;";
             SqlCommand command = new SqlCommand(getstarttime, con);
 
             try

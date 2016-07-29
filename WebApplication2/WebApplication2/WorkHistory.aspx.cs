@@ -13,12 +13,14 @@ namespace WebApplication2
         SqlConnection connection = new SqlConnection(GlobalInitialization.ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            EmpIDTxt.Text = GlobalInitialization.ID.ToString();
             CalendarStartDate.SelectedDate = DateTime.Now;
             CalendarEndDate.SelectedDate = DateTime.Now;
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             //  Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
             Response.Cache.SetNoStore();
             Response.AppendHeader("Pragma", "no-cache");
+            
         }
 
         protected void CalendarStartDate_SelectionChanged(object sender, EventArgs e)
@@ -38,11 +40,11 @@ namespace WebApplication2
             if (DataValidator == true)
             {
                 string date = DateRetrieve();
-                TextBoxLog.Text = date;
+                
             }
             else
             {
-                TextBoxLog.Text = "Invalid Date";
+                
             }
 
 
@@ -102,5 +104,20 @@ namespace WebApplication2
             return re.ToString();
         }
 
+
+        protected void EmpHistory_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
+        }
+
+        protected void GVEmpHist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
+        }
     }
 }

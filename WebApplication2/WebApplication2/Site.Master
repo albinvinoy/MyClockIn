@@ -47,7 +47,6 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" runat="server" href="~/">WinClockIn</a>
-                    <asp:Label ID="EmpLoggedIn" runat="server" ForeColor="White" Text="Logged In As:    Mrs. Robinson" Width="250px"></asp:Label>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

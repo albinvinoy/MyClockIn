@@ -5,17 +5,120 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace WebApplication2
 {
     public partial class Manager : System.Web.UI.Page
     {
+        #region Skip
+        private string  DepartmentName;
+        private int DeptID;
+        // I left this from the old Manager page..not sure if you could reuse it
         DateTime TimeStart = new DateTime();
         DateTime end = new DateTime();
         int smartCount;
 
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
+        // I tried to add my local database but couldn't figure it out...
+        SqlConnection con = new SqlConnection(GlobalInitialization.ConnectionString);
         int EmployeeId = 100;
+
+        protected void TextBoxEmpName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void CalendarStart_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBoxStart.Text = CalendarStart.SelectedDate.ToShortDateString();
+        }
+        protected void CalendarEnd_SelectionChanged(object sender, EventArgs e)
+        {
+            TextBoxEnd.Text = CalendarEnd.SelectedDate.ToShortDateString();
+        }
+        protected void DropRange_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
+        protected void TextBoxStart_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void TextBoxEnd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected string getName()
+        {
+            string namereturn = "";
+            string sqlname = @"select [First Name] + ' ' +[Last Name] as name
+from [Employee]
+where lower([First Name]) like ('%" + TextBoxEmpName.Text + "%');";
+            con.Open();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sqlname, con);
+                namereturn = (string)cmd.ExecuteScalar();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return namereturn;
+        }
+        protected string getDepartment()
+        {
+            string getdeptname = "";
+            string sqldept = @"select [Deparment Name]
+from [Department]
+where [Department ID] = (
+select [Department_ID]
+from Employee
+where ([First Name] + ' ' +[Last Name]) = '" + LabelEmpName.Text + "');";
+
+            con.Open();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sqldept, con);
+                getdeptname = (string)cmd.ExecuteScalar();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return getdeptname;
+        }
+        protected int getID()
+        {
+            int getempid = 0;
+            string sqlgetID = @"select [ID]
+from Employee
+where ([First Name] + ' ' +[Last Name]) = '" + LabelEmpName.Text + "';";
+            con.Open();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sqlgetID, con);
+                getempid = (int)cmd.ExecuteScalar();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return getempid;
+        }
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,159 +128,42 @@ namespace WebApplication2
             Response.AppendHeader("Pragma", "no-cache");
         }
 
-        protected void ButtonClockIn_Click(object sender, EventArgs e)
-        {
-            DateTime start = new DateTime();
-            start = DateTime.Now;
-
-            string format = start.ToShortTimeString();
-            LabelCurrentTime.Text = "Clock In Time" + format;
-
-            string sqlin = @"INSERT INTO [Time] ([Time in], [Work / Abscent], [EmployeeIdFK])
-VALUES('" + start + "',1,'" + EmployeeId + "');";
-
-            addTime(sqlin);
-            buttonupdate2();
-        }
-
-        protected void ButtonClockOut_Click(object sender, EventArgs e)
-        {
-            end = DateTime.Now;
-
-            string format = end.ToShortTimeString();
-            LabelClockIn.Text = "Clock Out Time: " + format;
-
-            // get the start time of the work period
-            TimeStart = getStartTime();
-
-            //calculate the total time
-            var TotalWorkTime = (end - TimeStart).TotalHours;
-
-            LabelClockOut.Text = TimeStart.ToString() + " " + end.ToString() + " " + TotalWorkTime.ToString();
-            // query to update time out and total time
-            string sqlin = @"update [Time]
-            set [Time out] = '" + end + "', [Total Hours] = '" + TotalWorkTime + "' where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
-
-            addTime(sqlin);
-            buttonupdate2();
-        }
-
-        private void addTime(string cmd)
-        {
-            SqlCommand command = new SqlCommand(cmd, con);
-            try
-            {
-                con.Open();
-                SqlDataReader rdr = command.ExecuteReader();
-            }
-            catch (SqlException ex)
-            {
-
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-        private void buttonupdate()
-        {
-            string buttonsql =
-                @"
-    select count(*)
-    from [Time]
-    where [Time out] is null";
-            int btnctrl = TestButtonIn(buttonsql);
-            //if count = 0 disables clock out button
-            if (btnctrl == 0)
-            {
-                ButtonClockIn.Enabled = false;
-                ButtonClockOut.Enabled = true;
-            }
-            //else disable clock in
-            else
-            {
-                ButtonClockOut.Enabled = true;
-                ButtonClockIn.Enabled = false;
-            }
-            // TextBox1.Text = smartCount.ToString();
-        }
-
-        private DateTime getStartTime()
-        {
-            DateTime startm = new DateTime();
-            string getstarttime = @"
-select [Time in]
-from [Time]
-where [EmployeeIdFK] = '" + EmployeeId + "'and [Time out] is null;";
-            SqlCommand command = new SqlCommand(getstarttime, con);
-
-            try
-            {
-                con.Open();
-                startm = (DateTime)command.ExecuteScalar();
-            }
-            catch (SqlException ex)
-            {
-
-            }
-            finally
-            {
-                con.Close();
-            }
-            return startm;
-        }
-
-        private int TestButtonIn(string cmd)
-        {
-            SqlCommand command = new SqlCommand(cmd, con);
-            try
-            {
-                con.Open();
-                smartCount = (Int32)command.ExecuteScalar();
-
-            }
-            catch (SqlException ex)
-            {
-
-            }
-            finally
-            {
-                con.Close();
-            }
-            return smartCount;
-        }
-
-        private void buttonupdate2()
-        {
-            string buttonsql =
-                @"
-    select count(*)
-    from [Time]
-    where [Time out] is null";
-            int btnctrl = TestButtonIn(buttonsql);
-            //if count = 0 disables clock out button
-            if (btnctrl == 0)
-            {
-                ButtonClockOut.Enabled = false;
-                ButtonClockIn.Enabled = true;
-            }
-            //else disable clock in
-            else
-            {
-                ButtonClockOut.Enabled = true;
-                ButtonClockIn.Enabled = false;
-            }
-            // TextBox1.Text = smartCount.ToString();
-        }
-
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
+            // ACTUAL DATA NEEDS TO BE PULLED FROM DATABASE
+            LabelEmpName.Text = getName().ToString();
+            LabelEmpId.Text = getID().ToString();
+            LabelEmpDept.Text = getDepartment().ToString();
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ButtonSearch_Click(object sender, EventArgs e)
         {
-          
+            if (DropRange.SelectedIndex == 1)
+            {
+                // Daily Search
+            }
+            else if (DropRange.SelectedIndex == 2)
+            {
+                // Weekly Search
+            }
+            else if (DropRange.SelectedIndex == 3)
+            {
+                // Monthly Search
+            }
+            else
+            {
+                // Select Range = Default/Place Holder
+            }
+        }
+
+        protected void ChartPayroll_Customize(object sender, EventArgs e)
+        {
+        }
+
+        private LegendCellColumn LegendCellColumn()
+        {
+            throw new NotImplementedException();
         }
     }
 
