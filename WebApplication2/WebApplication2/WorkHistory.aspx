@@ -74,4 +74,11 @@
 
 
     </table>
+    <table style="width: 100%;">
+        <tr>
+            <td>
+                <asp:Button ID="ButtonEmail" runat="server" Text="Email History" />
+            </td>
+        </tr>
+    </table>
 </asp:Content>

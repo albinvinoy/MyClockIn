@@ -16,7 +16,7 @@
             <tr>
                 <td style="width: 131px"><strong>Employee Name:</strong></td>
                 <td>
-                    <asp:TextBox ID="TextBoxEmpName" runat="server" Width="329px" OnTextChanged="TextBoxEmpName_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxEmpName" runat="server" Width="329px" OnTextChanged="TextBoxEmpName_TextChanged" autocomplete ="off"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
                     <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" OnClick="ButtonSubmit_Click" />
                 </td>
@@ -122,14 +122,14 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE ([EmployeeIdFK] = @EmployeeIdFK)">
+                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE ([EmployeeIdFK] = @EmployeeIdFK)">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="100" Name="EmployeeIdFK" Type="Int32" />
                         </SelectParameters>
                     </asp:SqlDataSource>
                 </td>
                 <td>
-                    <span style="vertical-align: middle">ww</span><asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT Employee.[First Name] + ' ' + Employee.[Last Name] AS Name, Time.[Total Hours] * Employee.[Pay Rate] AS PayTotal, Time.[Total Hours], FORMAT(Time.[Time in], 'd', 'en-gb') AS Worked_On FROM Employee INNER JOIN Time ON Employee.ID = Time.EmployeeIdFK ORDER BY Name"></asp:SqlDataSource>
+                  <span style="vertical-align: middle">ww</span><asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT Employee.[First Name] + ' ' + Employee.[Last Name] AS Name, Time.[Total Hours] * Employee.[Pay Rate] AS PayTotal, Time.[Total Hours], FORMAT(Time.[Time in], 'd', 'en-gb') AS Worked_On FROM Employee INNER JOIN Time ON Employee.ID = Time.EmployeeIdFK ORDER BY Name"></asp:SqlDataSource>
                 </td>
             </tr>
         </table>
@@ -166,6 +166,13 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <asp:Button ID="ButtonEmail" runat="server" Text="Email Report" />
                 </td>
             </tr>
         </table>
