@@ -39,7 +39,7 @@
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
                 <br />
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Eric\Documents\LocalDB.mdf;Integrated Security=True;Connect Timeout=30" OnSelecting="SqlDataSource1_Selecting" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours, [EmployeeIdFK] FROM [Time] WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK)) ORDER BY [Time in]">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK))">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBoxStartDate" Name="Time_in" PropertyName="Text" Type="DateTime" />
                         <asp:ControlParameter ControlID="TextBoxEndDate" Name="Time_out" PropertyName="Text" Type="DateTime" />
@@ -64,7 +64,6 @@
                                 <asp:BoundField DataField="Time_in" HeaderText="Time_in" SortExpression="Time_in" />
                                 <asp:BoundField DataField="Time_out" HeaderText="Time_out" SortExpression="Time_out" />
                                 <asp:BoundField DataField="Total_Hours" HeaderText="Total_Hours" SortExpression="Total_Hours" />
-                                <asp:BoundField DataField="EmployeeIdFK" HeaderText="EmployeeIdFK" SortExpression="EmployeeIdFK" />
                             </Columns>
                         </asp:GridView>
                     </div>
@@ -73,12 +72,5 @@
             </td>
 
 
-    </table>
-    <table style="width: 100%;">
-        <tr>
-            <td>
-                <asp:Button ID="ButtonEmail" runat="server" Text="Email History" />
-            </td>
-        </tr>
     </table>
 </asp:Content>

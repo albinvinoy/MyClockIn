@@ -28,13 +28,15 @@ namespace WebApplication2.Account
 
             if (IsValid)
             {
+
                 // Begin code to check for log in
                 var usename = Email.Text;
                 var password = Password.Text;
                 string sqllogin = @"
                 select count(*)
                 from [Employee]
-                where [username] = '" + usename + "' and  [password] = '" + password + "';";
+                where [username] = '" + usename + "' and  [password] = '" +
+                password + "';";
 
                 GlobalInitialization.LoginStatus = ConnectionControl(sqllogin);
                 // End code to check for log in
@@ -84,6 +86,7 @@ namespace WebApplication2.Account
             {
                 connection.Open();
                 connected = (Int32)command.ExecuteScalar();
+
             }
             catch (SqlException ex)
             {

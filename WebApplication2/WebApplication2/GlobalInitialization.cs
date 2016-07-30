@@ -12,7 +12,9 @@ namespace WebApplication2
 {
     public class GlobalInitialization : Page
     {
-        public static string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;";
+        public static string ConnectionString = @"
+Data Source=**********;Initial Catalog=********;User ID=*******;Password=*******
+";
         public static int ID;
         public static int LoginStatus;
     }

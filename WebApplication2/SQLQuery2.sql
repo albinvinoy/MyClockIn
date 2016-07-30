@@ -6,7 +6,7 @@
  
  select Employee.[First Name]
  , Time.[Total Hours] * Employee.[Pay Rate] as Total_Pay 
- , Time.[Time in]
+ , FORMAT(Time.[Time in], 'd', 'en-gb') AS Worked_On
  from Employee
  inner join Time on
  Employee.ID = Time.EmployeeIdFK

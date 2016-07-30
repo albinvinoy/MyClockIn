@@ -16,7 +16,7 @@
             <tr>
                 <td style="width: 131px"><strong>Employee Name:</strong></td>
                 <td>
-                    <asp:TextBox ID="TextBoxEmpName" runat="server" Width="329px" OnTextChanged="TextBoxEmpName_TextChanged" autocomplete ="off"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxEmpName" runat="server" Width="329px" OnTextChanged="TextBoxEmpName_TextChanged"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;
                     <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" OnClick="ButtonSubmit_Click" />
                 </td>
@@ -52,27 +52,27 @@
         <table style="width: 100%;">
             <tr>
                 <td style="width: 239px">
-                    <asp:Calendar ID="CalendarStart" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" OnSelectionChanged="CalendarStart_SelectionChanged">
-                        <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                        <NextPrevStyle VerticalAlign="Bottom" />
-                        <OtherMonthDayStyle ForeColor="#808080" />
-                        <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                        <SelectorStyle BackColor="#CCCCCC" />
-                        <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                        <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        <WeekendDayStyle BackColor="#FFFFCC" />
+                    <asp:Calendar ID="CalendarStart" runat="server" BackColor="White" BorderColor="#3366CC" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnSelectionChanged="CalendarStart_SelectionChanged" BorderWidth="1px">
+                        <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                        <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                        <OtherMonthDayStyle ForeColor="#999999" />
+                        <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                        <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                        <TitleStyle BackColor="#003399" BorderColor="#3366CC" Font-Bold="True" BorderWidth="1px" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                        <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                        <WeekendDayStyle BackColor="#CCCCFF" />
                     </asp:Calendar>
                 </td>
                 <td style="width: 233px">
-                    <asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" OnSelectionChanged="CalendarEnd_SelectionChanged">
-                        <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                        <NextPrevStyle VerticalAlign="Bottom" />
-                        <OtherMonthDayStyle ForeColor="#808080" />
-                        <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                        <SelectorStyle BackColor="#CCCCCC" />
-                        <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                        <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                        <WeekendDayStyle BackColor="#FFFFCC" />
+                    <asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="#3366CC" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnSelectionChanged="CalendarEnd_SelectionChanged" BorderWidth="1px">
+                        <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+                        <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                        <OtherMonthDayStyle ForeColor="#999999" />
+                        <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                        <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+                        <TitleStyle BackColor="#003399" BorderColor="#3366CC" Font-Bold="True" BorderWidth="1px" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
+                        <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+                        <WeekendDayStyle BackColor="#CCCCFF" />
                     </asp:Calendar>
                 </td>
                 <td style="width: 141px; vertical-align: top">
@@ -107,14 +107,37 @@
                 <td style="width: 312px"><strong>Individual Report:</strong></td>
             </tr>
             <tr>
-                <td style="width: 312px; height: 22px;"><strong>HOURS</strong></td>
-                <td style="height: 22px"><strong>PAYROLL</strong></td>
+                <td style="width: 312px"><strong>HOURS</strong></td>
+                <td><strong>PAYROLL</strong></td>
             </tr>
             <tr>
                 <td style="width: 312px">
-                    <asp:Chart ID="ChartHours" runat="server">
+                    <asp:Chart ID="ChartHours" runat="server" DataSourceID="SqlDataSource1" Width="629px" >
                         <Series>
-                            <asp:Series ChartType="Bubble" Name="Series1" YValuesPerPoint="2">
+                            <asp:Series Name="Series1" Color="Black" LabelBackColor="128, 255, 128" LabelBorderColor="192, 0, 192" MarkerBorderColor="Red" MarkerColor="0, 0, 192" MarkerImageTransparentColor="128, 128, 255" Palette="Bright" XValueMember="Worked On" YValueMembers="Total Hours">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1" BorderColor="64, 64, 64, 64" BorderDashStyle="Solid"
+                                BackSecondaryColor="White" BackColor="64, 165, 191, 228" ShadowColor="Transparent"
+                                BackGradientStyle="TopBottom">
+                                <AxisY LineColor="64, 64, 64, 64">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" />
+                                </AxisY>
+                                <AxisX LineColor="64, 64, 64, 64">
+                                    <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+                                    <MajorGrid LineColor="64, 64, 64, 64" />
+                                </AxisX>
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
+                </td>
+                <td>
+                    <asp:Chart ID="ChartPayroll" runat="server" DataSourceID="SqlDataSource1" style="margin-right: 248px" Width="483px">
+                        <Series>
+                            <asp:Series Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -122,14 +145,12 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
-                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE ([EmployeeIdFK] = @EmployeeIdFK)">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="usp_TotalPay" SelectCommandType="StoredProcedure">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="100" Name="EmployeeIdFK" Type="Int32" />
+                            <asp:ControlParameter ControlID="CalendarStart" Name="StartDate" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:ControlParameter ControlID="CalendarEnd" Name="EndDate" PropertyName="SelectedDate" Type="DateTime" />
                         </SelectParameters>
                     </asp:SqlDataSource>
-                </td>
-                <td>
-                  <span style="vertical-align: middle">ww</span><asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="SELECT Employee.[First Name] + ' ' + Employee.[Last Name] AS Name, Time.[Total Hours] * Employee.[Pay Rate] AS PayTotal, Time.[Total Hours], FORMAT(Time.[Time in], 'd', 'en-gb') AS Worked_On FROM Employee INNER JOIN Time ON Employee.ID = Time.EmployeeIdFK ORDER BY Name"></asp:SqlDataSource>
                 </td>
             </tr>
         </table>
@@ -144,9 +165,9 @@
             </tr>
             <tr>
                 <td style="width: 312px">
-                    <asp:Chart ID="ChartOverallHours" runat="server">
+                    <asp:Chart ID="ChartOverallHours" runat="server" DataSourceID="SqlDataSource1" Height="376px" Width="453px">
                         <Series>
-                            <asp:Series ChartType="Doughnut" Name="Series1">
+                            <asp:Series Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -156,9 +177,9 @@
                     </asp:Chart>
                 </td>
                 <td>
-                    <asp:Chart ID="ChartOverallPayroll" runat="server">
+                    <asp:Chart ID="ChartOverallPayroll" runat="server" DataSourceID="SqlDataSource1" Height="373px" Width="467px">
                         <Series>
-                            <asp:Series ChartType="Doughnut" Name="Series1">
+                            <asp:Series ChartType="StackedColumn" Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -166,13 +187,6 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
-                </td>
-            </tr>
-        </table>
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <asp:Button ID="ButtonEmail" runat="server" Text="Email Report" />
                 </td>
             </tr>
         </table>
