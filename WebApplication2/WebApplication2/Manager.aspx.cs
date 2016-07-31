@@ -230,59 +230,64 @@ where ([First Name] + ' ' +[Last Name]) = '" + LabelEmpName.Text + "';";
             return dtDataChart;
         }
 
-      /*
-
-        //private void makeprocedure()
-        //{
-        //    string query = @" EXEC usp_PayHour @EmpId, @StartDate, @EndDate ";
-
-
-        //    using (SqlCommand command = new SqlCommand(query, con))
-        //    {
-        //        command.CommandType = CommandType.Text;
-        //        command.Parameters.AddWithValue("@EmpId", getID());
-        //        command.Parameters.AddWithValue("@StartDate", CalendarStart.SelectedDate);
-        //        command.Parameters.AddWithValue("@EndDate", CalendarEnd.SelectedDate);
-        //        con.Open();
-        //        var reader = command.ExecuteReader();
-        //        //do something with data in the reader.
-        //        con.Close();
-        //    }
-        //}
-
-        private void LoadData()
+        protected void ButtonAddEmployee_Click(object sender, EventArgs e)
         {
-            ChartHours.DataSource = GetData();
-            ChartHours.Series["Series1"].XValueMember = "Worked On";
-            ChartHours.Series["Series1"].YValueMembers = "Total Hours";
+            Server.Transfer("EmployeeManagement.aspx", true);
         }
 
-        private DataTable GetData()
-        {
-            string sqlPayHour = @" EXEC usp_PayHour @EmpId, @StartDate, @EndDate ";
-            DataTable dtChartData = new DataTable();
-            using (SqlCommand command = new SqlCommand(sqlPayHour, con))
-            {
-                //command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@EmpId", SqlDbType.Int).Value = GetData();
-                command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = CalendarStart.SelectedDate;
-                command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = CalendarEnd.SelectedDate;
-                //command.Parameters.AddWithValue("@EmpId", getID());
-                //command.Parameters.AddWithValue("@StartDate", CalendarStart.SelectedDate);
-                //command.Parameters.AddWithValue("@EndDate", CalendarEnd.SelectedDate);
+        /*
 
-                con.Open();
-                command.ExecuteNonQuery();
-                SqlDataReader reader = command.ExecuteReader();
-                dtChartData.Load(reader);
-                con.Close();
-            }
-
-            return dtChartData;
-        }
+          //private void makeprocedure()
+          //{
+          //    string query = @" EXEC usp_PayHour @EmpId, @StartDate, @EndDate ";
 
 
-    }
-    */
+          //    using (SqlCommand command = new SqlCommand(query, con))
+          //    {
+          //        command.CommandType = CommandType.Text;
+          //        command.Parameters.AddWithValue("@EmpId", getID());
+          //        command.Parameters.AddWithValue("@StartDate", CalendarStart.SelectedDate);
+          //        command.Parameters.AddWithValue("@EndDate", CalendarEnd.SelectedDate);
+          //        con.Open();
+          //        var reader = command.ExecuteReader();
+          //        //do something with data in the reader.
+          //        con.Close();
+          //    }
+          //}
+
+          private void LoadData()
+          {
+              ChartHours.DataSource = GetData();
+              ChartHours.Series["Series1"].XValueMember = "Worked On";
+              ChartHours.Series["Series1"].YValueMembers = "Total Hours";
+          }
+
+          private DataTable GetData()
+          {
+              string sqlPayHour = @" EXEC usp_PayHour @EmpId, @StartDate, @EndDate ";
+              DataTable dtChartData = new DataTable();
+              using (SqlCommand command = new SqlCommand(sqlPayHour, con))
+              {
+                  //command.CommandType = CommandType.StoredProcedure;
+                  command.Parameters.Add("@EmpId", SqlDbType.Int).Value = GetData();
+                  command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = CalendarStart.SelectedDate;
+                  command.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = CalendarEnd.SelectedDate;
+                  //command.Parameters.AddWithValue("@EmpId", getID());
+                  //command.Parameters.AddWithValue("@StartDate", CalendarStart.SelectedDate);
+                  //command.Parameters.AddWithValue("@EndDate", CalendarEnd.SelectedDate);
+
+                  con.Open();
+                  command.ExecuteNonQuery();
+                  SqlDataReader reader = command.ExecuteReader();
+                  dtChartData.Load(reader);
+                  con.Close();
+              }
+
+              return dtChartData;
+          }
+
+
+      }
+      */
     }
 }

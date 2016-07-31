@@ -13,7 +13,7 @@ namespace WebApplication2
     public class GlobalInitialization : Page
     {
         public static string ConnectionString = @"
-Data Source=**********;Initial Catalog=********;User ID=*******;Password=*******
+Data Source=brandonknapp.net;Initial Catalog=bnap88_property;Persist Security Info=True;User ID=application;Password=Snow$Board$2000
 ";
         public static int ID;
         public static int LoginStatus;

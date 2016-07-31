@@ -8,6 +8,12 @@
             <tr>
                 <td style="width: 131px">&nbsp;</td>
         </table>
+                <table style="width: 100%;">
+            <tr>
+                <td style="width: 131px">
+                    <asp:Button ID="ButtonAddEmployee" runat="server" OnClick="ButtonAddEmployee_Click" Text="Add Employee" />
+                </td>
+        </table>
         <table style="width: 100%;">
             <tr>
                 <td style="width: 131px">&nbsp;</td>
