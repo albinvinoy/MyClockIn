@@ -22,9 +22,9 @@
                         <asp:Label ID="Label2" runat="server" Font-Bold="True" Text="Password" TextMode="Password"></asp:Label>
                         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="Email" runat="server" Width="169px"></asp:TextBox>
+                        <asp:TextBox ID="Email" runat="server" Width="169px" AutoCompleteType="Disabled"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:TextBox ID="Password" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="Password" runat="server" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
                         <br />
 &nbsp;
                         <br />

@@ -405,7 +405,6 @@ C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplica
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\roslyn\vbc.exe
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\roslyn\VBCSCompiler.exe
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\WebApplication2.dll.config
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\WebApplication2.dll
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\WebApplication2.pdb
 C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\Antlr3.Runtime.dll
@@ -787,3 +786,4 @@ D:\Users\Albin\MyClockIn\WebApplication2\WebApplication2\bin\Microsoft.Owin.Secu
 D:\Users\Albin\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.csprojResolveAssemblyReference.cache
 D:\Users\Albin\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.dll
 D:\Users\Albin\MyClockIn\WebApplication2\WebApplication2\obj\Debug\WebApplication2.pdb
+C:\Users\Tyler-PC\Desktop\School\Summer2016\CPSC362\Project\MyClockIn\WebApplication2\WebApplication2\bin\WebApplication2.dll.config
