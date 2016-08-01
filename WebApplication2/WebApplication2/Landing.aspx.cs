@@ -17,7 +17,7 @@ namespace WebApplication2
 
         string my_notes;
         private int smartCount = 0;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\Albin\dummy.mdf;Integrated Security=True;");
+        SqlConnection con = new SqlConnection(GlobalInitialization.ConnectionString);
         int EmployeeId = 100;
 
         public void Page_Load(object sender, EventArgs e)
