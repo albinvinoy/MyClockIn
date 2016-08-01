@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace WebApplication2
 {
@@ -146,6 +147,43 @@ namespace WebApplication2
             
         }
 
+        protected void btnEmail_Click(object sender, EventArgs e)
+        {
+            string toEmail;
+            string myAccount = GlobalInitialization.gaccount;
+            string myPass = GlobalInitialization.passes;
+            SmtpClient client = new SmtpClient();
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //client.EnableSsl = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = 25;
 
+            //Albin we need an sql query to get the email from whoever we want to send it to
+            //it has to be a valid email so we need real email addresses in our database
+
+            // setup Smtp authentication
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(myAccount, myPass);
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(myAccount);
+            msg.To.Add(new MailAddress(myAccount));
+
+            msg.Subject = "Work History";
+
+
+            //this is where we will put the work history we need to create a string from the data from the current work history look up
+            //change me 
+            msg.Body = "test";
+
+   try
+            {
+                client.Send(msg);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

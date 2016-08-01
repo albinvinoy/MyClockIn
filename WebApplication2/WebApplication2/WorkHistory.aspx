@@ -41,7 +41,7 @@
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
                 <br />
-                <asp:Button ID="btnEmail" runat="server" Text="E-Mail" />
+                <asp:Button ID="btnEmail" runat="server" Text="E-Mail Report to Myself" OnClick="btnEmail_Click" Width="200px" />
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BrandonString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK))">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBoxStartDate" Name="Time_in" PropertyName="Text" Type="DateTime" />
