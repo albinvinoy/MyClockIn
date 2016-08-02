@@ -42,7 +42,10 @@
                 </asp:Calendar>
                 <br />
                 <asp:Button ID="btnEmail" runat="server" Text="E-Mail Report to Myself" OnClick="btnEmail_Click" Width="200px" />
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BrandonString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours FROM [Time] WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK))">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BrandonString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [Time in] AS Time_in, [Time out] AS Time_out, [Total Hours] AS Total_Hours 
+FROM [Time] 
+WHERE (([Time in] &gt;= @Time_in) AND ([Time out] &lt;= @Time_out + '23:59:59') AND ([EmployeeIdFK] = @EmployeeIdFK))
+ORDER BY [Time in] ASC;">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="TextBoxStartDate" Name="Time_in" PropertyName="Text" Type="DateTime" />
                         <asp:ControlParameter ControlID="TextBoxEndDate" Name="Time_out" PropertyName="Text" Type="DateTime" />
@@ -63,23 +66,22 @@
                             Log History:</div>
                     </div>
                     <div style="height: 306px" aria-readonly="True">
-                        <asp:GridView ID="GVEmpHistory" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="89px" Width="542px" OnSelectedIndexChanged="GVEmpHistory_SelectedIndexChanged" showfooter="True" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None">
-                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <asp:GridView ID="GVEmpHistory" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Height="89px" Width="542px" OnSelectedIndexChanged="GVEmpHistory_SelectedIndexChanged" showfooter="True" AllowPaging="True" CellPadding="3" GridLines="Horizontal" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px">
+                            <AlternatingRowStyle BackColor="#F7F7F7" />
                             <Columns>
                                 <asp:BoundField DataField="Time_in" HeaderText="Time_in" SortExpression="Time_in" />
                                 <asp:BoundField DataField="Time_out" HeaderText="Time_out" SortExpression="Time_out" />
                                 <asp:BoundField DataField="Total_Hours" HeaderText="Total_Hours" SortExpression="Total_Hours" />
                             </Columns>
-                            <EditRowStyle BackColor="#999999" />
-                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                            <SortedAscendingCellStyle BackColor="#F4F4FD" />
+                            <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+                            <SortedDescendingCellStyle BackColor="#D8D8F0" />
+                            <SortedDescendingHeaderStyle BackColor="#3E3277" />
                         </asp:GridView>
                     </div>
                 </div>

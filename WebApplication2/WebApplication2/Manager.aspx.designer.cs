@@ -85,15 +85,6 @@ namespace WebApplication2 {
         protected global::System.Web.UI.WebControls.Calendar CalendarEnd;
         
         /// <summary>
-        /// DropRange control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropRange;
-        
-        /// <summary>
         /// ButtonSearch control.
         /// </summary>
         /// <remarks>
@@ -130,13 +121,13 @@ namespace WebApplication2 {
         protected global::System.Web.UI.DataVisualization.Charting.Chart ChartHours;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// ChartHoursforIndividual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource ChartHoursforIndividual;
         
         /// <summary>
         /// ChartPayroll control.
@@ -148,30 +139,12 @@ namespace WebApplication2 {
         protected global::System.Web.UI.DataVisualization.Charting.Chart ChartPayroll;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// ChartPaysforIndividual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-        
-        /// <summary>
-        /// ChartOverallHours control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartOverallHours;
-        
-        /// <summary>
-        /// ChartOverallPayroll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart ChartOverallPayroll;
+        protected global::System.Web.UI.WebControls.SqlDataSource ChartPaysforIndividual;
     }
 }

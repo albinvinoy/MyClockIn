@@ -154,21 +154,20 @@ namespace WebApplication2
             string myPass = GlobalInitialization.passes;
             SmtpClient client = new SmtpClient();
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //client.EnableSsl = true;
             client.Host = "smtp.gmail.com";
-            client.Port = 25;
+            client.Port = 993;
 
             //Albin we need an sql query to get the email from whoever we want to send it to
             //it has to be a valid email so we need real email addresses in our database
 
             // setup Smtp authentication
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(myAccount, myPass);
-            client.UseDefaultCredentials = false;
+            client.UseDefaultCredentials = true;
             client.Credentials = credentials;
 
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress(myAccount);
-            msg.To.Add(new MailAddress(myAccount));
+            msg.To.Add(new MailAddress("patrick.chris.ryan685@gmail.com"));
 
             msg.Subject = "Work History";
 

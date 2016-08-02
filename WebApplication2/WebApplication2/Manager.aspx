@@ -82,13 +82,7 @@
                     </asp:Calendar>
                 </td>
                 <td style="width: 141px; vertical-align: top">
-                    <asp:DropDownList ID="DropRange" runat="server" OnSelectedIndexChanged="DropRange_SelectedIndexChanged1">
-                        <asp:ListItem>(Search Range)</asp:ListItem>
-                        <asp:ListItem>Daily</asp:ListItem>
-                        <asp:ListItem>Weekly</asp:ListItem>
-                        <asp:ListItem>Monthly</asp:ListItem>
-                    </asp:DropDownList>
-                </td>
+                    &nbsp;</td>
                 <td style="vertical-align: top">
                     <asp:Button ID="ButtonSearch" runat="server" Text="Search" OnClick="ButtonSearch_Click" />
                 </td>
@@ -118,9 +112,9 @@
             </tr>
             <tr>
                 <td style="width: 312px">
-                    <asp:Chart ID="ChartHours" runat="server" DataSourceID="SqlDataSource1" Width="629px" >
+                    <asp:Chart ID="ChartHours" runat="server" DataSourceID="ChartHoursforIndividual" Width="641px" Height="309px" >
                         <Series>
-                            <asp:Series Name="Series1" Color="Black" LabelBackColor="128, 255, 128" LabelBorderColor="192, 0, 192" MarkerBorderColor="Red" MarkerColor="0, 0, 192" MarkerImageTransparentColor="128, 128, 255" Palette="Bright" XValueMember="Worked On" YValueMembers="Total Hours">
+                            <asp:Series Name="Series1" Color="Black" LabelBackColor="128, 255, 128" LabelBorderColor="192, 0, 192" MarkerBorderColor="Red" MarkerColor="0, 0, 192" MarkerImageTransparentColor="128, 128, 255" Palette="Bright" XValueMember="Date" YValueMembers="Hours / Day">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -138,12 +132,18 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
+                    <asp:SqlDataSource ID="ChartHoursforIndividual" runat="server" ConnectionString="<%$ ConnectionStrings:BrandonString %>" SelectCommand="clock_TotalHourPerDayForIndividual" SelectCommandType="StoredProcedure">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="LabelEmpId" Name="EmpId" PropertyName="Text" Type="Int32" />
+                            <asp:ControlParameter ControlID="CalendarStart" Name="StartDate" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:ControlParameter ControlID="CalendarEnd" Name="EndDate" PropertyName="SelectedDate" Type="DateTime" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
                 </td>
                 <td>
-                    <asp:Chart ID="ChartPayroll" runat="server" DataSourceID="SqlDataSource1" style="margin-right: 248px" Width="483px">
+                    <asp:Chart ID="ChartPayroll" runat="server" DataSourceID="ChartPaysforIndividual" style="margin-right: 248px" Width="642px" Height="309px">
                         <Series>
-                            <asp:Series Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
+                            <asp:Series Name="Series1" XValueMember="Date" YValueMembers="Payment / Day">
                             </asp:Series>
                         </Series>
                         <ChartAreas>
@@ -151,8 +151,9 @@
                             </asp:ChartArea>
                         </ChartAreas>
                     </asp:Chart>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dummyConnectionString %>" SelectCommand="usp_TotalPay" SelectCommandType="StoredProcedure">
+                    <asp:SqlDataSource ID="ChartPaysforIndividual" runat="server" ConnectionString="<%$ ConnectionStrings:BrandonString %>" SelectCommand="clock_TotalPayPerDayForIndividual" SelectCommandType="StoredProcedure">
                         <SelectParameters>
+                            <asp:ControlParameter ControlID="LabelEmpId" Name="EmpId" PropertyName="Text" Type="Int32" />
                             <asp:ControlParameter ControlID="CalendarStart" Name="StartDate" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="CalendarEnd" Name="EndDate" PropertyName="SelectedDate" Type="DateTime" />
                         </SelectParameters>
@@ -169,33 +170,7 @@
                 <td style="height: 22px; width: 313px"><strong>HOURS</strong></td>
                 <td style="height: 22px"><strong>PAYROLL</strong></td>
             </tr>
-            <tr>
-                <td style="width: 312px">
-                    <asp:Chart ID="ChartOverallHours" runat="server" DataSourceID="SqlDataSource1" Height="376px" Width="453px">
-                        <Series>
-                            <asp:Series Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
-                            </asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1">
-                            </asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                </td>
-                <td>
-                    <asp:Chart ID="ChartOverallPayroll" runat="server" DataSourceID="SqlDataSource1" Height="373px" Width="467px">
-                        <Series>
-                            <asp:Series ChartType="StackedColumn" Name="Series1" XValueMember="Worked On" YValueMembers="Total Hours">
-                            </asp:Series>
-                        </Series>
-                        <ChartAreas>
-                            <asp:ChartArea Name="ChartArea1">
-                            </asp:ChartArea>
-                        </ChartAreas>
-                    </asp:Chart>
-                </td>
-            </tr>
-        </table>
+            </table>
     </div>
 
 </asp:Content>

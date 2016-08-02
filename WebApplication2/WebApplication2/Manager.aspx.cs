@@ -152,22 +152,7 @@ where ([First Name] + ' ' +[Last Name]) = '" + LabelEmpName.Text + "';";
         {
             LoadData(); //--------------------------------------------------------
 
-            if (DropRange.SelectedIndex == 1)
-            {
-                // Daily Search
-            }
-            else if (DropRange.SelectedIndex == 2)
-            {
-                // Weekly Search
-            }
-            else if (DropRange.SelectedIndex == 3)
-            {
-                // Monthly Search
-            }
-            else
-            {
-                // Select Range = Default/Place Holder
-            }
+           
         }
         /*
         private void LoadData()
