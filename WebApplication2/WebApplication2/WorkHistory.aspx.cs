@@ -12,18 +12,19 @@ namespace WebApplication2
     public partial class Contact : Page
     {
         SqlConnection connection = new SqlConnection(GlobalInitialization.ConnectionString);
+        bool good = true;
 
         //uppon loading set calender date and set employee ID
         protected void Page_Load(object sender, EventArgs e)
         {
             EmpIDTxt.Text = GlobalInitialization.ID.ToString();
-           // CalendarStartDate.SelectedDate = DateTime.Now;
-           // CalendarEndDate.SelectedDate = DateTime.Now;
+            // CalendarStartDate.SelectedDate = DateTime.Now;
+            // CalendarEndDate.SelectedDate = DateTime.Now;
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             //  Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
             Response.Cache.SetNoStore();
             Response.AppendHeader("Pragma", "no-cache");
-            
+
         }
 
         // set textbox to calender date selected
@@ -40,10 +41,11 @@ namespace WebApplication2
         protected void CalendarEndDate_SelectionChanged(object sender, EventArgs e)
         {
             TextBoxEndDate.Text = CalendarEndDate.SelectedDate.ToShortDateString();
+            //good = true;
             SumHoursInLabel();
 
         }
-    
+
 
         protected void TextBoxStartDate_TextChanged(object sender, EventArgs e)
         {
@@ -53,6 +55,7 @@ namespace WebApplication2
         protected void TextBoxEndDate_TextChanged(object sender, EventArgs e)
         {
             // Don't Remove
+         
         }
 
         protected void TextBoxLog_TextChanged(object sender, EventArgs e)
@@ -79,7 +82,7 @@ namespace WebApplication2
         {
             if (CheckValidDate(CalendarStartDate.SelectedDate, CalendarEndDate.SelectedDate))
             {
-
+               
                 string sqlWorkhistory = @"
     select SUM([Total Hours])
     from [Time]
@@ -93,7 +96,7 @@ namespace WebApplication2
             }
             else
                 lblTotalHours.Text = " ";
-                //do nothing
+            //do nothing
         }
 
 
@@ -144,44 +147,50 @@ namespace WebApplication2
 
         protected void GVEmpHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnEmail_Click(object sender, EventArgs e)
         {
-            string toEmail;
-            string myAccount = GlobalInitialization.gaccount;
-            string myPass = GlobalInitialization.passes;
-            SmtpClient client = new SmtpClient();
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Host = "smtp.gmail.com";
-            client.Port = 993;
 
-            //Albin we need an sql query to get the email from whoever we want to send it to
-            //it has to be a valid email so we need real email addresses in our database
-
-            // setup Smtp authentication
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(myAccount, myPass);
-            client.UseDefaultCredentials = true;
-            client.Credentials = credentials;
-
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress(myAccount);
-            msg.To.Add(new MailAddress("patrick.chris.ryan685@gmail.com"));
-
-            msg.Subject = "Work History";
-
-
-            //this is where we will put the work history we need to create a string from the data from the current work history look up
-            //change me 
-            msg.Body = "test";
-
-   try
+            if (good == true)
             {
-                client.Send(msg);
-            }
-            catch (Exception ex)
-            {
+                string toEmail = "";
+                string myAccount = GlobalInitialization.gaccount;
+                string myPass = GlobalInitialization.passes;
+                SmtpClient client = new SmtpClient();
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+
+                //Albin we need an sql query to get the email from whoever we want to send it to
+                //it has to be a valid email so we need real email addresses in our database
+
+                // setup Smtp authentication
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(myAccount, myPass);
+                client.UseDefaultCredentials = false;
+                client.EnableSsl = true;
+                client.Credentials = credentials;
+                client.ServicePoint.MaxIdleTime = 10;
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress(myAccount);
+                msg.To.Add(new MailAddress(myAccount));
+
+                msg.Subject = "Work History";
+
+
+                //this is where we will put the work history we need to create a string from the data from the current work history look up
+                //change me 
+                msg.Body = "test";
+
+                try
+                {
+                    client.Send(msg);
+                }
+                catch (Exception ex)
+                {
+                }
             }
         }
     }
