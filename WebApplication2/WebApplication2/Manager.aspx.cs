@@ -130,10 +130,13 @@ where ([First Name] + ' ' +[Last Name]) = '" + LabelEmpName.Text + "';";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
-            Response.AppendHeader("Pragma", "no-cache");
+           
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+                Response.Cache.SetNoStore();
+                Response.AppendHeader("Pragma", "no-cache");
+           
+            
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)

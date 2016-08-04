@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="winclockin" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Users\\Albin\\MyClockIn\ 4\\MyClockIn\ 4\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Users\\Albin\\MyClockIn\ 4\\MyClockIn\ 4\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=brandonknapp.net; Database=bnapp88_property;User Id=application; password=Snow$Board$2000; encrypt=true" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Users\\Albin\\MyClockIn\ 4\\MyClockIn\ 4\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="BrandonString-Web.config Connection String" description="BrandonString Connection String used in web.config by the application to access the database." value="Data Source=brandonknapp.net;User ID=application;Password=Snow$Board$2000" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Users\\Albin\\MyClockIn\ 4\\MyClockIn\ 4\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BrandonString']/@connectionString" />
+  </parameter>
+</parameters>

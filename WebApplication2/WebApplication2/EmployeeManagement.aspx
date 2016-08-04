@@ -95,7 +95,7 @@
             </tr>
                         <tr>
                 <td style="width: 126px">
-                    <asp:Button ID="ButtonAdd" runat="server" Text="Add Employee" />
+                    <asp:Button ID="ButtonAdd" runat="server" Text="Add Employee" OnClick="ButtonAdd_Click" />
                             </td>
                 <td>&nbsp;</td>
             </tr>

@@ -64,10 +64,13 @@ namespace WebApplication2.Account
                 // Begin transfer to appropriate page
                 if (GlobalInitialization.LoginStatus == 1 && level == 1)
                 {
+                    GlobalInitialization.log = true;
                     Server.Transfer("~/Landing.aspx");
                 }
                 else if (GlobalInitialization.LoginStatus == 1 && level == 2)
                 {
+                    GlobalInitialization.log = true;
+                    GlobalInitialization.manager = true;
                     Server.Transfer("~/Manager.aspx");
                 }
                 else

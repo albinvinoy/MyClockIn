@@ -12,28 +12,30 @@ namespace WebApplication2
 {
     public partial class Landing : System.Web.UI.Page
     {
-
         DateTime TimeStart = new DateTime();
         DateTime end = new DateTime();
 
         string my_notes;
         private int smartCount = 0;
-
-        //use ID and connection string found in GlobalInitializaiton
         SqlConnection con = new SqlConnection(GlobalInitialization.ConnectionString);
         int EmployeeId = GlobalInitialization.ID;
 
-        //upon loading update clock in and clock out buttons. Decide which one to gray out
         public void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-           // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
-            Response.AppendHeader("Pragma", "no-cache");
-            buttonupdate();
+            if (GlobalInitialization.LoginStatus == 0)
+            {
+                Server.Transfer("~/Account/Login.aspx");
+            }
+            else
+            {
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                // Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+                Response.Cache.SetNoStore();
+                Response.AppendHeader("Pragma", "no-cache");
+                buttonupdate();
+            }
         }
 
-        //when employee clicks clock in update the database with a new time slot
         protected void In_Click(object sender, EventArgs e)
         {
             DateTime start = new DateTime();
@@ -50,7 +52,6 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             buttonupdate();
         }
 
-        //when employee clicks the clock out button update the last time entry the employee of the employee and calculate the hours worked
         protected void Out_Click(object sender, EventArgs e)
         {
             double time = 0;
@@ -81,19 +82,16 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             
         }
 
-        //set my_notes string to textbox notes
         protected void TextBoxNotes_TextChanged(object sender, EventArgs e)
         {
             my_notes = TextBoxNotes.Text;
         }
 
-        //sets the current time label to show the current time
         private void displayTime()
         {
             LabelCurrentTime.Text = "Current Time: " + DateTime.Now.ToShortTimeString();
         }
 
-        //set up a connection with the database and execute the query command, cmd
         private void addTime(string cmd)
         {
             SqlCommand command = new SqlCommand(cmd, con);
@@ -112,7 +110,6 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             }
         }
 
-        //executes the query command, cmd
         private int TestButtonIn(string cmd)
         {
             SqlCommand command = new SqlCommand(cmd, con);
@@ -133,7 +130,6 @@ VALUES('" + start + "',1,'" + EmployeeId + "');";
             return smartCount;
         }
 
-        //grays out clock in or clock out based on whether the latest time value has a NULL value or not for clock out
         private void buttonupdate()
         {
             string buttonsql =
